@@ -8,6 +8,8 @@ import (
 
 var (
 	mutex sync.Mutex
+	wg      sync.WaitGroup
+	counter int64
 )
 
 func main() {
