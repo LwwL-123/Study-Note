@@ -15,7 +15,7 @@
 在Go语言中，内置函数make仅支持`slice`,`map`,`	channel`三种数据类型的内存创建，**其返回值是所创建类型的本身，而不是新的指针引用**
 
 ```go
-func main{
+func main(){
   v1 := make([]int 1,5) //长度为1 最大容量为5
   v2 := make(map[int]bool,5)
   v3 := make(chan int,1)
