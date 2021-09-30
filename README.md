@@ -6,3 +6,5 @@
 
 - [Go语言CSP：通信顺序进程简述](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/Go语言CSP：通信顺序进程简述.md)
 
+- [Go语言defer详解](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/defer.md)
+
