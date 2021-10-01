@@ -8,3 +8,5 @@
 
 - [Go语言defer详解](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/defer.md)
 
+- [Go语言channel](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/Go_chain.md)
+
