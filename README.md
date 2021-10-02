@@ -10,3 +10,5 @@
 
 - [Go语言channel](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/Go_chain.md)
 
+- [Go语言结构体比较](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/Go结构体比较.md)
+
