@@ -12,5 +12,13 @@
 
 - [Go语言结构体比较](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/Go结构体比较.md)
 
-- [Goroutine数量](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/Goroutine数量md)
+- [Goroutine数量](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/Goroutine数量.md)
+
+
+
+
+
+# 对象存储
+
+- [对象存储](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/对象存储.md)
 
