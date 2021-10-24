@@ -5,16 +5,26 @@ import (
 )
 
 func main() {
-	s := []int{1, 2, 3}
-	// 7为大小 9位最大容量
-	var ss = make([]int, 7, 9)
-	printSlice(s)
-	printSlice(ss)
+	s := []int{1, 2, 3,3,3,3}
 
-	ss = append(ss, 10, 11, 12)
-	printSlice(ss)
+	for i,num := range s{
+		if num == 3 {
+			s = append(s[:i],s[i+1:]...)
+			i--
 
-	func(a int) { print(a + 1) }(5)
+		}
+	}
+
+	fmt.Println(s)
+	//// 7为大小 9位最大容量
+	//var ss = make([]int, 7, 9)
+	//printSlice(s)
+	//printSlice(ss)
+	//
+	//ss = append(ss, 10, 11, 12)
+	//printSlice(ss)
+	//
+	//func(a int) { print(a + 1) }(5)
 	//numbers := []int{0,1,2,3,4,5,6,7,8}
 	///* 打印原始切片 */
 	//fmt.Println("numbers ==", numbers)
