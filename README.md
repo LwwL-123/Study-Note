@@ -41,6 +41,6 @@
 
 # 实际开发中遇到的问题
 
-- [Gin开发中遇到的一些问题](https://github.com/LwwL-123/Go_Study/Go学习文档/Gin开发中遇到的一些问题.md)
+- [Gin开发中遇到的一些问题](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/Gin开发中遇到的一些问题.md)
 
   
