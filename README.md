@@ -25,6 +25,10 @@
 
 - [锁](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/锁.md)
 
+# 分布式
+
+[CAP理论和BASE理论](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/CAP理论.md)
+
 # 对象存储
 
 - [对象存储](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/对象存储.md)
