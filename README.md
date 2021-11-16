@@ -18,8 +18,7 @@
 # Golang底层分析
 
 - [chan](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/Go底层原理/chan.md)
-
-
+- [select](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/Go底层原理/select.md)
 
 # 锁
 
