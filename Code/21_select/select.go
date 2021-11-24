@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"time"
 )
 
@@ -41,7 +42,7 @@ func main() {
 		time.Sleep(5*time.Second)
 	}
 
-
+	println(math.Pow(2, 5))
 
 	fmt.Println("main exit.")
 }
