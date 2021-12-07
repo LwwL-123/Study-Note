@@ -19,7 +19,7 @@
 
 - [chan](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/Go底层原理/chan.md)
 - [select](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/Go底层原理/select.md)
-- [GMP 并发调度器深度解析](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/Go底层原理/GMP 并发调度器深度解析.md)
+- [GMP并发调度器深度解析](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/Go底层原理/GMP并发调度器深度解析.md)
 
 
 
