@@ -74,6 +74,7 @@
 # 共识算法
 
 - [链式共识算法](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/共识算法/链式共识算法.md)
+- [Raft共识算法](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/共识算法/Raft.md)
 
 
 
