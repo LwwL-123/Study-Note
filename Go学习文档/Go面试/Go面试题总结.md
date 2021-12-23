@@ -50,3 +50,30 @@ import --> const --> var --> init()
 
 - 一个包将只初始化一次，即使它是从多个包导入的。
 
+
+
+###  go语言的时候垃圾回收，写代码的时候如何减少小对象分配 
+
+小对象在堆上频繁地申请释放，会造成内存碎片（有的叫空洞），导致分配大的对象时无法申请到连续的内存空间，一般建议是采用内存池。Go runtime底层也采用内存池，但每个span大小为4k，同时维护一个cache。cache有一个0到n的list数组，list数组的每个单元挂载的是一个链表，链表的每个节点就是一块可用的内存，同一链表中的所有节点内存块都是大小相等的；但是不同链表的内存大小是不等的，也就是说list数组的一个单元存储的是一类固定大小的内存块，不同单元里存储的内存块大小是不等的。这就说明cache缓存的是不同类大小的内存对象，当然想申请的内存大小最接近于哪类缓存内存块时，就分配哪类内存块。当cache不够再向spanalloc中分配。
+
+建议：小对象合并成结构体一次分配，示意如下：
+
+```go
+for k, v := range m {
+    k, v := k, v // copy for capturing by the goroutine
+    go func() {
+        // using k & v
+    }()
+}
+```
+
+替换为：
+
+```go
+for k, v := range m {
+    x := struct {k , v string} {k, v} // copy for capturing by the goroutine
+    go func() {
+        // using x.k & x.v
+    }()
+}
+```
