@@ -39,7 +39,7 @@
 
 
 
-- [Go的垃圾回收原理](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/Go底层原理/Go的垃圾回收原理.md)
+- [Go垃圾回收原理](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/Go底层原理/Go垃圾回收原理.md)
 
 
 
