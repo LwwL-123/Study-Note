@@ -1,5 +1,10 @@
 # Golang 面试题总结
 
+- [Go面试](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/Go面试/Go面试题总结.md)
+- [Go面试记录](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/Go面试/Go面试记录.md)
+
+
+
 - [new和make的区别](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/new_make.md)
 - [rune关键字](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/rune关键字.md)
 - [结构体是否能比较？](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/Go结构体比较.md)
