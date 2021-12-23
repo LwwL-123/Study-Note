@@ -27,6 +27,10 @@
 
 
 
+- [内存对齐](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/Go底层原理/内存对齐.md)
+
+
+
 - [Go内存分配](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/Go底层原理/Go.内存分配.md)
 
 
