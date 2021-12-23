@@ -1,7 +1,7 @@
 # Golang 面试题总结
 
 - [Go面试](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/Go面试/Go面试题总结.md)
-- [Go面试记录](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/Go面试/Go面试记录.md)
+- [Go面试记录](https://github.com/LwwL-123/Go_Study/blob/main/Go学习文档/Go面试/面试记录.md)
 
 
 
