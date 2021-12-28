@@ -39,3 +39,9 @@ bash中：
 ## lsof
 
 l
+
+
+
+## ls
+
+ls -ll
