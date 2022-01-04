@@ -71,3 +71,54 @@ netstat用来查看系统当前系统网络状态信息，包括端口，连接�
 区别：
 **1.netstat无权限控制，lsof有权限控制，只能看到本用户**
 **2.losf能看到pid和用户，可以找到哪个进程占用了这个端口**
+
+
+
+## SCP用法
+
+scp命令的使用频率越来越高，大概的举例说明下这个命令
+
+1. 获取远程服务器上的文件
+
+```
+scp -P 22 root@remoteHost:/root/test.tar.gz /home/test.tar.gz
+```
+
+端口大写P 为参数，22 表示指定连接SSH的端口，如果没有更改默认的SSH端口（即：22）可以不用添加该参数。
+
+ root@remoteHost 表示使用root用户登录远程服务器remoteHost，
+
+:/root/test.tar.gz 表示远程服务器上的文件，
+
+最后面的/home/test.tar.gz表示保存到本地上的路径和文件名。
+
+
+
+2. 获取远程服务器上的目录
+
+```
+scp -r root@remoteHost:/root/testdir  /home/testdir/
+```
+
+-r 参数表示递归复制（即复制该目录下面的文件和子目录）；
+
+/root/testdir/ 表示远程服务器上的目录，最后面的/home/testdir/表示保存在本地上的路径。
+
+
+
+3. 将本地文件上传到服务器上
+
+```
+scp /home/upload.tar.gz root@remoteHost:/root/upload.tar.gz
+```
+
+由上例可知，scp命令大致用法为 scp [源路径] [目标路径]，
+当下载文件时 源路径为服务器的路径，当上传文件时源路径为本地路径；
+服务器的路径一般为 [用户名]@[主机地址/IP/域名]:[服务器上的路径]
+本地路径即本地操作系统的路径，windows有win的写法，linux有linux写法，视情况而定
+
+其余常用参数有
+-4 强制使用ipv4
+-6 强制使用ipv6
+-v 和大多数 linux 命令中的 -v 意思一样 , 用来显示进度 . 可以用来查看连接 , 认证 , 或是配置错误 .
+-C 使能压缩
