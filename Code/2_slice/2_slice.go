@@ -5,6 +5,22 @@ import (
 )
 
 func main() {
+
+
+	a := [5]int{1,2,3,4,5}
+	b := a[1:]
+	fmt.Println(b)
+	b1 := b[:3]
+	fmt.Println(b1)
+	b1 = append(b1,109)
+	b1 = append(b1,109)
+	b1[3] =1000
+
+	fmt.Println(b)
+
+
+
+
 	//s := []int{1, 2, 3,3,3,3}
 	//
 	//for i,num := range s{
@@ -35,22 +51,22 @@ func main() {
 	///* 默认下限为 0*/
 	//fmt.Println("numbers[:3] ==", numbers[:3])
 
-	array := [10]int{1,2,3,4,5,6,7,8,9,10}
-
-	var slice = array[0:10]
-	fmt.Println(&slice[0] == &array[0])
-	slice[0] = 1000
-	slice = append(slice,11)
-
-
-	fmt.Println("lenth of slice: ", len(slice))
-	fmt.Println("capacity of slice: ", cap(slice))
-	fmt.Println(slice)
-	fmt.Println(&slice[0] == &array[0])
-
-	slice[0] = 100
-	fmt.Println(slice)
-	fmt.Println(array)
+	//array := [10]int{1,2,3,4,5,6,7,8,9,10}
+	//
+	//var slice = array[0:10]
+	//fmt.Println(&slice[0] == &array[0])
+	//slice[0] = 1000
+	//slice = append(slice,11)
+	//
+	//
+	//fmt.Println("lenth of slice: ", len(slice))
+	//fmt.Println("capacity of slice: ", cap(slice))
+	//fmt.Println(slice)
+	//fmt.Println(&slice[0] == &array[0])
+	//
+	//slice[0] = 100
+	//fmt.Println(slice)
+	//fmt.Println(array)
 
 	//sliceA := make([]int, 5, 10)
 	//sliceB := sliceA[0:5]         //length = 5; capacity = 10
