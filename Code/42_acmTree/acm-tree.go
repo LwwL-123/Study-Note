@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type TreeNode struct {
 	Val   int
@@ -12,6 +14,7 @@ func main() {
 	nodeVal := []int{1, 2, 3, 4, 5, 6, 7}
 	root := constructBinaryTree(nodeVal)
 	printBinaryTree(root, len(nodeVal))
+	spew.Dump(root)
 }
 func constructBinaryTree(array []int) *TreeNode {
 	var root *TreeNode
