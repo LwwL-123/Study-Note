@@ -6,123 +6,79 @@ import (
 	"time"
 )
 
-//任务
-type Job interface {
-	Do() //do something...
-}
-
-//----------------------------------------------
-//worker 工人
-type Worker struct {
-	JobQueue chan Job  //任务队列
-	Quit     chan bool //停止当前任务
-}
-
-//新建一个 worker 通道实例   新建一个工人
-func NewWorker() Worker {
-	return Worker{
-		JobQueue: make(chan Job), //初始化工作队列为null
-		Quit:     make(chan bool),
-	}
-}
-
-/*
-整个过程中 每个Worker(工人)都会被运行在一个协程中，
-在整个WorkerPool(领导)中就会有num个可空闲的Worker(工人)，
-当来一条数据的时候，领导就会小组中取一个空闲的Worker(工人)去执行该Job，
-当工作池中没有可用的worker(工人)时，就会阻塞等待一个空闲的worker(工人)。
-每读到一个通道参数 运行一个 worker
-*/
-
-func (w Worker) Run(wq chan chan Job) {
-	//这是一个独立的协程 循环读取通道内的数据，
-	//保证 每读到一个通道参数就 去做这件事，没读到就阻塞
-	go func() {
-		for {
-			wq <- w.JobQueue //注册工作通道  到 线程池
-			select {
-			case job := <-w.JobQueue: //读到参数
-				job.Do()
-			case <-w.Quit: //终止当前任务
-				return
-			}
-		}
-	}()
-}
-
-//----------------------------------------------
-//workerpool 领导
-type WorkerPool struct {
-	workerlen   int      //线程池中  worker(工人) 的数量
-	JobQueue    chan Job //线程池的  job 通道
-	WorkerQueue chan chan Job
-}
-
-func NewWorkerPool(workerlen int) *WorkerPool {
-	return &WorkerPool{
-		workerlen:   workerlen,                      //开始建立 workerlen 个worker(工人)协程
-		JobQueue:    make(chan Job),                 //工作队列 通道
-		WorkerQueue: make(chan chan Job, workerlen), //最大通道参数设为 最大协程数 workerlen 工人的数量最大值
-	}
-}
-
-//运行线程池
-func (wp *WorkerPool) Run() {
-	//初始化时会按照传入的num，启动num个后台协程，然后循环读取Job通道里面的数据，
-	//读到一个数据时，再获取一个可用的Worker，并将Job对象传递到该Worker的chan通道
-	fmt.Println("初始化worker")
-	for i := 0; i < wp.workerlen; i++ {
-		//新建 workerlen 20万 个 worker(工人) 协程(并发执行)，每个协程可处理一个请求
-		worker := NewWorker() //运行一个协程 将线程池 通道的参数  传递到 worker协程的通道中 进而处理这个请求
-		worker.Run(wp.WorkerQueue)
-	}
-
-	// 循环获取可用的worker,往worker中写job
-	go func() { //这是一个单独的协程 只负责保证 不断获取可用的worker
-		for {
-			select {
-			case job := <-wp.JobQueue: //读取任务
-				//尝试获取一个可用的worker作业通道。
-				//这将阻塞，直到一个worker空闲
-				worker := <-wp.WorkerQueue
-				worker <- job //将任务 分配给该工人
-			}
-		}
-	}()
-}
-
-//----------------------------------------------
-type Dosomething struct {
-	Num int
-}
-
-func (d *Dosomething) Do() {
-	fmt.Println("完成任务：", d.Num)
-	time.Sleep(1 * 1 * time.Second)
-}
+var JobQueue = make(chan func(), 100)
 
 func main() {
-
-	//设置最大线程数
-	num := 100 * 100 * 20
-
-	// 注册工作池，传入任务
-	// 参数1 初始化worker(工人)并发个数 20万个
-	p := NewWorkerPool(num)
-	p.Run() //有任务就去做，没有就阻塞，任务做不过来也阻塞
-
-	//datanum := 100 * 100 * 100 * 100    //模拟百万请求
-	datanum := 100 * 100
-	go func() { //这是一个独立的协程 保证可以接受到每个用户的请求
-		for i := 1; i <= datanum; i++ {
-			sc := &Dosomething{Num: i}
-			p.JobQueue <- sc //往线程池 的通道中 写参数   每个参数相当于一个请求  来了100万个请求
+	for i := 0; i < 100; i++ {
+		go Worker()
+	}
+	// [1,2,3]    [1,4,7]
+	// [4,5,6]	  [2,5,8]
+	// [7,8,9]	  [3,6,9]
+	nums := [][]int{[]int{1, 2, 3, 4}, []int{5, 6, 7, 8}, []int{9, 10, 11, 12}, []int{13, 14, 15, 16}}
+	// 对角线反转
+	for tmp := 0; tmp < len(nums)/2; tmp++ {
+		n := len(nums)
+		i := tmp
+		JobQueue <- func() {
+			time.Sleep(time.Duration((i+1)*5) * time.Second)
+			fmt.Printf("对角线旋转第%d层", i)
+			for j := 0; j < (n+1)/2; j++ {
+				nums[i][j], nums[n-j-1][i], nums[n-i-1][n-j-1], nums[j][n-i-1] =
+					nums[n-j-1][i], nums[n-i-1][n-j-1], nums[j][n-i-1], nums[i][j]
+			}
 		}
-	}()
+	}
+	//// 中轴线反转
+	//for i := 0; i < len(nums); i++ {
+	//	fmt.Printf("注册第%d行", i)
+	//	tmp := i
+	//	JobQueue <- func() {
+	//		time.Sleep(time.Duration((tmp+1)*5) * time.Second)
+	//		left, right := 0, len(nums[tmp])-1
+	//		for left < right {
+	//			nums[tmp][left], nums[tmp][right] = nums[tmp][right], nums[tmp][left]
+	//			left++
+	//			right--
+	//		}
+	//		fmt.Println(tmp)
+	//	}
+	//}
 
-	for { //阻塞主程序结束
-		fmt.Println("runtime.NumGoroutine() :", runtime.NumGoroutine())
-		time.Sleep(2 * time.Second)
+	// 阻塞主线程
+	for {
+		fmt.Printf("协程数量为:%d\n", runtime.NumGoroutine())
+		fmt.Println(nums)
+		time.Sleep(1 * time.Second)
 	}
 
 }
+
+func Worker() {
+	for {
+		select {
+		case job := <-JobQueue:
+			job()
+		}
+	}
+}
+
+//package main
+//
+//import "fmt"
+//
+//func main() {
+//	ch := make(chan func(), 100)
+//	for i := 0; i < 10; i++ {
+//		tmp := i
+//		ch <- func() {
+//			fmt.Println(tmp)
+//		}
+//	}
+//
+//	for i := 0; i < 10; i++ {
+//		a := <-ch
+//		a()
+//	}
+//
+//}
