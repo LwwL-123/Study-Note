@@ -21,5 +21,5 @@ func firstMissingPositive(nums []int) int {
 			return k + 2
 		}
 	}
-	return len(nums) + 2
+	return len(nums) + 1
 }
